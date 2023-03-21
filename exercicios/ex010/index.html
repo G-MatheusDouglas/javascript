@@ -5,21 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DETRAN</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100vw;
+            height: 100vh;
+            background-color: blueviolet;
+        }
+
+        div#container {
+            background-color: white;
+            width: 440px;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.435);
+            text-align: center;
+        }
+
+        div#container > h1 {
+            margin-bottom: 20px;
+        }
+
+        div#container > input.btn {
+            background-color: blueviolet;
+            color: white;
+            margin: 20px 0px;
+            padding: 5px 20px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.356);
+            font-size: 1em;
+            font-weight: bolder;
+        }
+
+        div#container > input.btn:hover {
+            background-color: white;
+            color: blueviolet;
+            border: 2px solid blueviolet;
+            cursor: pointer;
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.164);
+        }
+
+        div#container > div#res {
+            width: 360px;
+            display: none;
+            padding: 5px;
+            margin: auto;
+            border-radius: 7px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Sistema de Multas</h1>
-    <div>
-        Velocidade do carro: <input type="number" name="txtvel" id="txtvel">Km/h
+    <div id="container">
+        <h1>Sistema de Multas</h1>
+        <div>
+            <label for="txtvel">Velocidade do carro: </label>
+            <input type="number" name="txtvel" id="txtvel" placeholder="Km/h">
+        </div>
+        <input class="btn" type="button" value="Verificar" onclick="calcular()">
+        <div id="res">
+
+        </div>
     </div>
-    <input type="button" value="Verificar" onclick="calcular()">
-    <div id="res"></div>
     <script>
         function calcular() {
             var txtv = window.document.querySelector('input#txtvel')
             var vel = Number(txtv.value)
+            res.style.display = 'block'
+            res.style.background = 'lightgreen'
             res.innerHTML = `<p>Sua velocidade atual é de <strong>${vel}Km/h</strong></p>`
             if (vel > 60) {
                 res.innerHTML += `<p>Você está <strong>MULTADO</strong> por excesso de velocidade`
+                res.style.background = 'rgb(255, 144, 144)'
             }
             res.innerHTML += `<p>Diriga sempre com cinto de segurança!<p>`
         }
