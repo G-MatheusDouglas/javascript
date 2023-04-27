@@ -1,13 +1,16 @@
-function gera() {
-    var res = document.getElementById('tabuada')
-    var num = Number(document.querySelector('input#num').value)
-    var r = 0
-    if (num == null) {
+function tabuada() {
+    let tab = document.getElementById('seltab')
+    let num = document.getElementById('txtn')
+    if (num.value.length == 0) {
         window.alert('Não foi possivel calcular, digite um número')
     } else {
+        let n = Number(num.value)
+        tab.innerHTML = ''
         for (var c = 1;c <= 10;c++) {
-            r = num * c
-            res.innerHTML += `<option>${num} x ${c} = ${r}<option>`
+            let item = document.createElement('option')
+            item.text  = `${n} x ${c} = ${n * c}` 
+            item.value = `tab${c}`
+            tab.appendChild(item)
         }
     }
 }

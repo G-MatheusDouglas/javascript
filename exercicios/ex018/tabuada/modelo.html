@@ -5,23 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos/style.css">
-    <title>Modelo de Exercício</title>
+    <title>Super Tabuada</title>
 </head>
 <body>
     <header>
-        <h1>Tabuda</h1>
+        <h1>Tabuada</h1>
     </header>
     <section>
         <div>
             <p>
                 <label for="num">Número:</label>
-                <input type="number" name="num" id="num" required>
-                <input type="button" value="Gerar Tabuada" onclick="gera()">
+                <input type="number" name="num" id="txtn" placeholder="Digite um número!" required>
+                <input type="button" value="Gerar Tabuada" onclick="tabuada()">
             </p>
         </div>
         <div id="res">
-            <!-- <textarea name="msg" id="msg" cols="30" rows="10">Digite um número acima</textarea> -->
-            <select name="tabuada" id="tabuada">
+            <select name="tabuada" id="seltab" size="10">
+                <option>Digite um número acima</option>
             </select>
         </div>
     </section>
