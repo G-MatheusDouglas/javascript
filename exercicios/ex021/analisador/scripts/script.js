@@ -2,10 +2,6 @@ let num = document.getElementById('txtn')
 let lista = document.getElementById('list')
 let res = document.querySelector('div#res')
 var valores = []
-var vSoma = 0
-var vCont = 0
-var menor = 100
-var maior = 1
 
 function isNumero(n) {
     if (Number(n) >= 1 && Number(n) <= 100) {
@@ -24,38 +20,45 @@ function inLista(n, l) {
 }
 
 function adicionar() {
-    n = Number(num.value)
     if (isNumero(num.value) && !inLista(num.value, valores)) {
-        vSoma += n
-        vCont ++
+        valores.push(Number(num.value)) // Adiciona o número ao Array
         // Adiciona um item à lista
         let item = document.createElement('option')
-        item.text = `valor ${n} adicionado`
+        item.text = `valor ${num.value} adicionado`
         lista.appendChild(item)
-        // Adiciona o número ao Array
-        valores.push(n)
-        // Verifica o menor e o maior
-        if (n < menor) {
-            menor = n
-        }
-        if (n > maior) {
-            maior = n
-        }
         // Limpa o campo de resposta
         res.innerHTML = ''
     } else {
         window.alert('Valor invalido ou já encontrado na lista')
     }
+    // Limpa o campo de dígitação
+    num.value = ''
+    num.focus()
 }
 function finalizar() {
-    if (vCont == 0) {
+    if (valores.length == 0) {
         window.alert('Adicione valores antes de finalizar')
     } else {
-        let vMedia = vSoma / vCont
-        res.innerHTML += `<p>Ao todo, temos ${vCont} números cadastrados.</p>`
+        let tot = valores.length
+        let maior = valores[0]
+        let menor = valores[0]
+        let soma = 0
+        let media = 0
+        for(let pos in valores) {
+            soma += valores[pos]
+            if (valores[pos] > maior) {
+                maior = valores[pos]
+            }
+            if (valores[pos] < menor) {
+                menor = valores[pos]
+            }
+        }
+        media = soma / tot
+        res.innerHTML = ''
+        res.innerHTML += `<p>Ao todo, temos ${tot} números cadastrados.</p>`
         res.innerHTML += `<p>O maior valor informado foi ${maior}.</p>`
         res.innerHTML += `<p>O menor valor informado foi ${menor}.</p>`
-        res.innerHTML += `<p>Somando todos os valores, temos ${vSoma}.</p>`
-        res.innerHTML += `<p>A média dos valores digitados é ${vMedia}.</p>`
+        res.innerHTML += `<p>Somando todos os valores, temos ${soma}.</p>`
+        res.innerHTML += `<p>A média dos valores digitados é ${media}.</p>`
     }
 }
