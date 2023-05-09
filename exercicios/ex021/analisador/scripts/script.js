@@ -1,25 +1,39 @@
-var vetor = []
+let num = document.getElementById('txtn')
+let lista = document.getElementById('list')
+let res = document.querySelector('div#res')
+var valores = []
 var vSoma = 0
 var vCont = 0
 var menor = 100
 var maior = 1
-var num = document.getElementById('txtn')
-var lista = document.getElementById('list')
-var res = document.querySelector('div#res')
+
+function isNumero(n) {
+    if (Number(n) >= 1 && Number(n) <= 100) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function inLista(n, l) {
+    if (l.indexOf(Number(n)) != -1) {
+        return true
+    } else {
+        return false
+    }
+}
 
 function adicionar() {
     n = Number(num.value)
-    if (n < 1 || n > 100 || vetor.indexOf(n) != -1) {
-        window.alert('Valor invalido ou já encontrado na lista')
-    } else {
+    if (isNumero(num.value) && !inLista(num.value, valores)) {
         vSoma += n
         vCont ++
         // Adiciona um item à lista
         let item = document.createElement('option')
         item.text = `valor ${n} adicionado`
         lista.appendChild(item)
-        // Adiciona o número ao Vetor
-        vetor.push(n)
+        // Adiciona o número ao Array
+        valores.push(n)
         // Verifica o menor e o maior
         if (n < menor) {
             menor = n
@@ -29,6 +43,8 @@ function adicionar() {
         }
         // Limpa o campo de resposta
         res.innerHTML = ''
+    } else {
+        window.alert('Valor invalido ou já encontrado na lista')
     }
 }
 function finalizar() {
